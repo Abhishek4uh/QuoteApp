@@ -14,20 +14,21 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.input.nestedscroll.nestedScroll
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import com.example.mywallet.presentation.commons.commonComponents.MyProgressBar
+import com.example.mywallet.presentation.commons.commonComponents.ErrorView
+import com.example.mywallet.presentation.commons.commonComponents.LoadingView
 import com.example.mywallet.presentation.commons.commonComponents.ToolBarComponent
+import com.example.mywallet.presentation.commons.commonComponents.UiDataState
 import com.example.mywallet.presentation.screens.detailScreen.components.DetailsQuoteCard
-import com.example.mywallet.utils.NetworkState
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun DetailsScreen(detailsVM: DetailsVM= hiltViewModel(),onBackPress:()->Unit) {
+fun DetailsScreen(id: String,detailsVM: DetailsVM= hiltViewModel(),onBackPress:()->Unit) {
 
     val state= detailsVM.singleQuote.collectAsStateWithLifecycle().value
     val scrollBehavior= TopAppBarDefaults.enterAlwaysScrollBehavior(state= rememberTopAppBarState())
+
 
     Scaffold(
         modifier = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
@@ -46,23 +47,19 @@ fun DetailsScreen(detailsVM: DetailsVM= hiltViewModel(),onBackPress:()->Unit) {
                 .background(Color.LightGray)){
 
             when(state){
-                is NetworkState.ERROR -> {
+                is UiDataState.Error -> {
                     Log.d("DetailsScreen_Composable","Error Occurred")
+                    ErrorView(state.error, action = {
+                        detailsVM.getSingleQuoteById(id)}
+                    )
                 }
-                is NetworkState.LOADING -> {
-                    MyProgressBar()
+                is UiDataState.Loaded -> {
+                    DetailsQuoteCard(state.data)
                 }
-                is NetworkState.SUCCESS -> {
-                    DetailsQuoteCard(state.data!!)
+                is UiDataState.Loading -> {
+                    LoadingView()
                 }
             }
         }
     }
-}
-
-
-@Preview
-@Composable
-private fun DetailsScreenPreview() {
-    DetailsScreen(onBackPress = {})
 }

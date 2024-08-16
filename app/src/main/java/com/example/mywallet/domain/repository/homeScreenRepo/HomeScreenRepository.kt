@@ -1,11 +1,11 @@
 package com.example.mywallet.domain.repository.homeScreenRepo
 
+import com.example.mywallet.common.Resource
 import com.example.mywallet.domain.model.AllQuoteDC
 import com.example.mywallet.domain.model.QuoteDC
-import retrofit2.Response
+import kotlinx.coroutines.flow.Flow
 
 interface HomeScreenRepository {
-
-    suspend fun getAllQuotes():Response<AllQuoteDC>
-    suspend fun getRandomQuote():Response<QuoteDC>
+    suspend fun getAllQuotes(): Flow<Resource<AllQuoteDC>>
+    suspend fun getRandomQuote():Flow<Resource<QuoteDC>>
 }

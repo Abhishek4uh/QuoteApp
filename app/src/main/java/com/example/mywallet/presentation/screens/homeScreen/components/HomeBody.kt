@@ -26,10 +26,17 @@ fun HomeBody(homeScreenDc: HomeScreenDc, onClick:(id:String)->Unit) {
         item {
             HeadingTitle(title ="Quotes")
         }
-        items(homeScreenDc.allQuoteDC?: emptyList()){item ->  
-            QuoteItem(quoteDC = item!!, modifier = Modifier.clickable {
-                onClick.invoke(item.id.toString())
-            })
+        homeScreenDc.allQuoteDC?.quote?.let { quotesList ->
+            items(quotesList) { item ->
+                item.let { quote ->
+                    QuoteItem(
+                        quoteDC = quote,
+                        modifier = Modifier.clickable {
+                            onClick.invoke(quote.id.toString())
+                        }
+                    )
+                }
+            }
         }
 
     }

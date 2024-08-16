@@ -13,11 +13,11 @@ import retrofit2.http.Path
 interface ApiInterface {
 
     @GET(ALL_QUOTES)
-    suspend fun getAllQuote():Response<AllQuoteDC>
+    suspend fun getAllQuote():AllQuoteDC
 
     @GET(RANDOM)
-    suspend fun getRandomQuote():Response<QuoteDC>
+    suspend fun getRandomQuote():QuoteDC
 
     @GET(SINGLE_QUOTE)
-    suspend fun getSingleQuote(@Path("id")id:String):Response<QuoteDC>
+    suspend fun getSingleQuote(@Path("id")id:String):QuoteDC
 }

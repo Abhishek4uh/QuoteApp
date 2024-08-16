@@ -50,7 +50,7 @@ fun ToolBarComponent(
             }
         },
         colors = TopAppBarDefaults.topAppBarColors(containerColor = MaterialTheme.colorScheme.onPrimary,
-           scrolledContainerColor = MaterialTheme.colorScheme.onPrimary ),
+           scrolledContainerColor = MaterialTheme.colorScheme.onPrimary),
         scrollBehavior = scrollBehavior
     )
 }
