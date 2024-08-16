@@ -1,8 +1,9 @@
 package com.example.mywallet.domain.repository.detailsScreenRepo
 
+import com.example.mywallet.common.Resource
 import com.example.mywallet.domain.model.QuoteDC
-import retrofit2.Response
+import kotlinx.coroutines.flow.Flow
 
 interface DetailScreenRepository {
-    suspend fun getSingleQuote(id:String): Response<QuoteDC>
+    suspend fun getSingleQuote(id:String): Flow<Resource<QuoteDC>>
 }

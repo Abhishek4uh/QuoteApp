@@ -1,7 +1,6 @@
 package com.example.mywallet.presentation.commons.appNavigation
 
 import androidx.compose.animation.AnimatedContentTransitionScope
-import androidx.compose.animation.core.tween
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
@@ -48,8 +47,10 @@ fun AppNavigation() {
                 slideOutOfContainer(
                     AnimatedContentTransitionScope.SlideDirection.Right
                 )
-            }){
-            DetailsScreen(onBackPress = {
+            }){navBackStackEntry ->
+            val id = navBackStackEntry.arguments?.getString("id") ?: ""
+
+            DetailsScreen(id = id,onBackPress = {
                 navController.popBackStack()
             })
         }
