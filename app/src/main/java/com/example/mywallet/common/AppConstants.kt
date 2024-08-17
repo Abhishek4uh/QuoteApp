@@ -1,4 +1,4 @@
-package com.example.mywallet.utils
+package com.example.mywallet.common
 
 object AppConstants {
 
