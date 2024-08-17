@@ -9,7 +9,7 @@ import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.example.mywallet.presentation.screens.detailScreen.DetailsScreen
 import com.example.mywallet.presentation.screens.homeScreen.HomeScreen
-import com.example.mywallet.utils.AppScreens
+import com.example.mywallet.common.AppScreens
 
 @Composable
 fun AppNavigation() {

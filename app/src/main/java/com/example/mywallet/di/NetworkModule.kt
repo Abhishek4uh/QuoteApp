@@ -5,7 +5,7 @@ import android.util.Log
 import androidx.viewbinding.BuildConfig
 import com.chuckerteam.chucker.api.ChuckerInterceptor
 import com.example.mywallet.data.remote.ApiInterface
-import com.example.mywallet.utils.AppConstants.BASE_URL
+import com.example.mywallet.common.AppConstants.BASE_URL
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
